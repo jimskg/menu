@@ -1,10 +1,182 @@
 :root {
   --main-theme-color: salmon;
   /*--main-theme-color: #FF0; */
+  font-family: __agora_4f3f36,__agora_Fallback_4f3f36;
 }
 
-
 body {
-  background-color:#1d1d1d;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity,1));
   overflow-x: hidden;
+  margin:0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  margin:0;
+}
+
+.container {
+  justify-content: center;
+  display: flex;
+}
+
+.container-inside {
+  flex-direction: column;
+  max-width: 1536px;
+  width: 100%;
+  display: flex;
+}
+
+.topnav {
+  overflow: hidden;
+  position: relative;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  animation: fadeBottom .7s ease-in-out;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0;
+}
+
+.topnav .menu-icon, .lang-icon {
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  display: block;
+  border-radius: .375rem;
+  background: rgb(142 201 199/var(--tw-bg-opacity,1));
+  cursor:pointer;
+}
+
+.lang-icon {
+  padding: 0.50rem;
+}
+
+.menu-icon {
+  padding: 0.75rem 0.80rem;
+}
+
+.lang-img{
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.topnav a.menu-icon, .lang-icon {
+  display: block;
+}
+
+/* .topnav .menu-icon:hover, .lang-icon:hover {
+  background-color: #ddd;
+  color: black;
+} */
+
+.btn-arrow {
+  display: flex;
+  flex-direction: column;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  position: fixed;
+}
+
+.footer {
+  padding: 1.5rem;
+  align-items: center;
+  flex-direction: column;
+  display:flex;
+  margin-top: .5rem;
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+.footer-info {
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.transform-270 {
+  transform: rotate(270deg);
+}
+
+.bg-primary {
+  background-color: rgb(142 201 199/var(--tw-text-opacity,1));
+}
+
+.bg-secondary {
+  background-color: rgb(223 193 113/var(--tw-bg-opacity,1));
+}
+
+.text-secondaryContent {
+  color: rgb(255 255 255/var(--tw-text-opacity,1));
+}
+
+.btn:hover, .menu-icon:hover, .lang-icon:hover {
+  opacity: 0.8;
+}
+
+.border-t {
+  border-top-width: 1px;
+}
+
+.border-primary {
+  border-color: rgb(142 201 199/var(--tw-border-opacity,1));
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-primary {
+  color: rgb(142 201 199/var(--tw-text-opacity,1));
+}
+
+.text-secondary {
+  color: rgb(223 193 113/var(--tw-text-opacity,1));
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.pad-0 {
+  padding: 0;
+}
+
+.margin-top-05 {
+  margin-top: .5rem;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: .375rem;
+  padding: .5rem;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;
+  transition-property: color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .2s;
+  cursor:pointer;
+}
+
+#insta {
+  background: rgb(223 193 113/var(--tw-text-opacity,1));
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  font-size: 2rem;
 }
