@@ -17,8 +17,8 @@
       <div class="container-inside">
 
         <!-- TOP BAR START -->
-        <div class="topnav">
-          <a href="javascript:void(0);" class="menu-icon bg-primary" onclick="myFunction()">
+        <div class="topnav sticky gap-1 animate-fadeBottom">
+          <a href="javascript:void(0);" class="menu-icon bg-primary" id="menu-icon">
             <i class="fa fa-bars"></i>
           </a>
           <img src="images/nutri_spot_transparent.png" width="100" height="100"></img>
@@ -40,95 +40,96 @@
 
         <!-- BODY CARDS START -->
         <div class="sticky top-9 margin-top-05">
-          <div class="px-250 pb-125">
-            <div>
+          <div class="flex p-05"></div>
+        </div>
 
-              <div class="category-title">
-                <div class="py-05 margin-bottom-1 w-full border-b border-solid border-primary border-opacity-50">
-                  <h1 id="cookies" class="text-primary font-bold text-xl">Υγιεινά</h1>
-                </div>
-              </div>
+        <div id="cards-body" class="px-250 pb-125">
+<!-- 
+          <div class="category-title transition-all duration-1000 ease-out">
+            <div class="py-05 margin-bottom-1 w-full border-b border-solid border-primary border-opacity-50">
+              <h1 id="cookies" class="text-primary font-bold text-xl">Υγιεινά</h1>
+            </div>
+          </div>
 
-              <div class="grid grid-cols-2 gap-1">
-                <div class="card-container">
+          <div class="grid grid-cols-2 gap-1">
+            <div class="card-container transition-all duration-1000 ease-out">
 
-                  <a class="px-1 py-05 card border-solid" href="www.google.gr">
-                    <h1 class="font-semibold">Χαρουποσοκολατομπουκιές</h1>
+              <a class="card transition-all duration-200 ease-in-out px-1 py-05 border-solid" href="www.google.gr">
+                <h1 class="font-semibold">Χαρουποσοκολατομπουκιές</h1>
 
-                    <div class="flex flex-wrap gap-025">
-                      <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">SUGARFREE</div>
-                      <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">LOW CALORIES</div>
-                      <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">VEGAN</div>
-                    </div>
-
-                    <div class="flex w-full h-full justify-between">
-                      <div class="flex flex-col w-full pr-1 gap-05">
-                        <p class="text-sm">
-                          Με χαρουπάλευρο, κακάο, μέλι, φυστικοβουτυρο, λάδι καρύδας και χυμό ανανά 
-                        </p>
-                      </div>
-                      <div class="margin-top-05 self-center">
-                        <img class="product-image" src="images/xarouposokolatompoukies.jpg" width="400" height="200"></img>
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between">
-                      <div class="flex flex-col items-start">
-                        <div class="flex flex-col items-start">
-                          <div class="margin-top-auto text-lg font-semibold text-primary inline-flex gap-05">
-                            €3.50
-                          </div>
-                        </div>
-                      </div>
-                      <div class="flex gap-05"></div>
-                    </div>
-
-                  </a>
-                  
+                <div class="flex flex-wrap gap-025">
+                  <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">SUGARFREE</div>
+                  <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">LOW CALORIES</div>
+                  <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">VEGAN</div>
                 </div>
 
-                <div class="card-container">
-
-                  <a class="px-1 py-05 card border-solid" href="www.google.gr">
-                    <h1 class="font-semibold">Strawberry boundy (5 pieces)</h1>
-
-                    <div class="flex flex-wrap gap-025">
-                      <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">SUGARFREE</div>
-                      <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">LOW CALORIES</div>
-                      <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">CHOCOLATE</div>
-                    </div>
-
-                    <div class="flex w-full h-full justify-between">
-                      <div class="flex flex-col w-full pr-1 gap-05">
-                        <p class="text-sm">
-                          Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη 
-                        </p>
-                      </div>
-                      <div class="margin-top-05 self-center">
-                        <img class="product-image" src="images/strawberryboundy.jpg" width="400" height="200"></img>
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between">
-                      <div class="flex flex-col items-start">
-                        <div class="flex flex-col items-start">
-                          <div class="margin-top-auto text-lg font-semibold text-primary inline-flex gap-05">
-                            €4.00
-                          </div>
-                        </div>
-                      </div>
-                      <div class="flex gap-05"></div>
-                    </div>
-
-                  </a>
-                  
+                <div class="flex w-full h-full justify-between">
+                  <div class="flex flex-col w-full pr-1 gap-05">
+                    <p class="text-sm">
+                      Με χαρουπάλευρο, κακάο, μέλι, φυστικοβουτυρο, λάδι καρύδας και χυμό ανανά 
+                    </p>
+                  </div>
+                  <div class="margin-top-05 self-center">
+                    <img class="product-image" src="images/xarouposokolatompoukies.jpg" width="400" height="200"></img>
+                  </div>
                 </div>
-                
-              </div>
 
+                <div class="flex justify-between">
+                  <div class="flex flex-col items-start">
+                    <div class="flex flex-col items-start">
+                      <div class="margin-top-auto text-lg font-semibold text-primary inline-flex gap-05">
+                        €3.50
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex gap-05"></div>
+                </div>
+
+              </a>
+              
             </div>
 
-          </div>
+            <div class="card-container transition-all duration-1000 ease-out">
+
+              <a class="card transition-all duration-200 ease-in-out px-1 py-05 border-solid" href="www.google.gr">
+                <h1 class="font-semibold">Strawberry boundy (5 pieces)</h1>
+
+                <div class="flex flex-wrap gap-025">
+                  <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">SUGARFREE</div>
+                  <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">LOW CALORIES</div>
+                  <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">CHOCOLATE</div>
+                </div>
+
+                <div class="flex w-full h-full justify-between">
+                  <div class="flex flex-col w-full pr-1 gap-05">
+                    <p class="text-sm">
+                      Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη 
+                    </p>
+                  </div>
+                  <div class="margin-top-05 self-center">
+                    <img class="product-image" src="images/strawberryboundy.jpg" width="400" height="200"></img>
+                  </div>
+                </div>
+
+                <div class="flex justify-between">
+                  <div class="flex flex-col items-start">
+                    <div class="flex flex-col items-start">
+                      <div class="margin-top-auto text-lg font-semibold text-primary inline-flex gap-05">
+                        €4.00
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex gap-05"></div>
+                </div>
+
+              </a>
+              
+            </div>
+            
+            
+
+          </div> -->
+
         </div>
         <!-- BODY CARDS END -->
 
@@ -150,5 +151,24 @@
     </div>
   </footer>
   <!-- FOOTER END -->
+
+  <!-- SIDE MENU STAER -->
+  <div class="side-container-menu" id="side-container-menu">
+    <button class="button-side-menu" id="button-side-menu" type="button"></button>
+    <aside class="side-menu gap-1 flex-col w-full flex" id="side-menu">
+      <div class="x-button-container">
+        <button class="btn x-button">
+          <div class="text-2xl">
+            <img src="images/closebutton.png" width="20" height="20"></img>
+          </div>
+        </button>
+      </div>
+      <h1 class="font-black text-secondary text-2xl">Categories</h1>
+      <ul class="w-full" id="list-categories">
+        <li class=""></li>
+      </ul>
+    </aside>
+  </div>
+  <!-- SIDE MENU END -->
 
 </html>

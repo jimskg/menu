@@ -118,12 +118,15 @@ h6 {
   display:flex;
   justify-content: space-between;
   align-items:center;
-  animation: fadeBottom .7s ease-in-out;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin: 0;
+  height: 9rem;
+  top: 0;
+  z-index: 20;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity,1));
 }
 
 .topnav .menu-icon, .lang-icon {
@@ -213,6 +216,10 @@ h6 {
   position: sticky;
 }
 
+.p-05 {
+  padding: 0.5rem;
+}
+
 .pb-125 {
   padding-bottom: 1.25rem;
 }
@@ -258,9 +265,22 @@ h6 {
   margin-top: .5rem;
 }
 
+.margin-top-250 {
+  margin-top: 2.5rem;
+}
+
 .margin-bottom-1{
   margin-bottom: 1rem;
 }
+
+.displayBlock {
+  display:block;
+}
+
+.displayNone {
+  display:none;
+}
+
 
 .self-center {
   align-self: center;
@@ -335,6 +355,10 @@ h6 {
   border-color: rgb(142 201 199/var(--tw-border-opacity,1));
 }
 
+.font-black {
+  font-weight: 900;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -381,6 +405,122 @@ h6 {
 
 .inline-flex {
   display: inline-flex;
+}
+
+@keyframes bounce {
+  0%,
+  to {
+    transform:translateY(-25%);
+    animation-timing-function:cubic-bezier(.8,0,1,1)
+  }
+  50% {
+    transform:none;
+    animation-timing-function:cubic-bezier(0,0,.2,1)
+  }
+}
+.animate-bounce {
+  animation:bounce 1s infinite
+}
+@keyframes breath {
+  0%,
+  to {
+    transform:scale(.9);
+    opacity:.5
+  }
+  50% {
+    transform:scale(1);
+    opacity:1
+  }
+}
+.animate-breath {
+  animation:breath 2s ease-in-out infinite
+}
+@keyframes fadeBottom {
+  0% {
+    transform:translateY(-100%);
+    opacity:0
+  }
+  to {
+    transform:translateY(0);
+    opacity:1
+  }
+}
+.animate-fadeBottom {
+  animation:fadeBottom .7s ease-in-out;
+}
+@keyframes fadeLeft {
+  0% {
+    transform:translateX(100%);
+    opacity:0
+  }
+  to {
+    transform:translateX(0);
+    opacity:1
+  }
+}
+.animate-fadeLeft {
+  animation:fadeLeft .7s ease-in-out
+}
+@keyframes fadeRight {
+  0% {
+    transform:translateX(-100%);
+    opacity:0
+  }
+  to {
+    transform:translateX(0);
+    opacity:1
+  }
+}
+.animate-fadeRight {
+  animation:fadeRight .7s ease-in-out
+}
+@keyframes fadeTop {
+  0% {
+    transform:translateY(100%);
+    opacity:0
+  }
+  to {
+    transform:translateY(0);
+    opacity:1
+  }
+}
+.animate-fadeTop {
+  animation:fadeTop .7s ease-in-out
+}
+@keyframes modalFadeTop {
+  0% {
+    transform:translateX(-50%);
+    opacity:0
+  }
+  -50% {
+    transform:translateY(0);
+    opacity:1
+  }
+}
+.animate-modalFadeTop {
+  animation:modalFadeTop .7s ease-in-out
+}
+
+.ease-out {
+  transition-timing-function: cubic-bezier(0,0,.2,1);
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.duration-1000 {
+  transition-duration: 1s;
+}
+
+.duration-200 {
+  transition-duration: 0.2s;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  transition-duration: .15s;
 }
 
 .card-container {
@@ -456,4 +596,58 @@ h6 {
     text-overflow: ellipsis;
     width: fit-content;
     height: fit-content;
+}
+
+.side-container-menu {
+    z-index: 20;
+    top: 0;
+    right: 0;
+    position: fixed;
+    display:none;
+}
+
+.button-side-menu {
+  opacity: .4;
+  background-color: rgb(0 0 0/var(--tw-bg-opacity,1));
+  width: 100vw;
+  min-height: 100vh;
+  right: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.side-menu {
+  align-items: center;
+  color: rgb(0 0 0/var(--tw-text-opacity,1));
+  background-color: rgb(255 255 255/var(--tw-bg-opacity,1));
+  padding: 1rem;
+  overflow: auto;
+  animation: fadeRight .7s ease-in-out;
+  max-width: 24rem;
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  inset: 0;
+  position: fixed;
+}
+
+.x-button-container {
+  width: fit-content;
+  align-self: flex-end;
+}
+
+.x-button {
+  background-color: transparent;
+  color: rgb(0 0 0/var(--tw-text-opacity,1));
+}
+
+.x-button:hover {
+  background-color: rgb(142 201 199/var(--tw-bg-opacity,1));
+  color: white;
+  opacity: 0.9;
+}
+
+.a-tag-category:hover {
+  background-color: rgb(142 201 199/var(--tw-bg-opacity,1));
+  color: rgb(255 255 255/var(--tw-text-opacity,1));
 }
