@@ -1,0 +1,10 @@
+:root {
+  --main-theme-color: salmon;
+  /*--main-theme-color: #FF0; */
+}
+
+
+body {
+  background-color:#1d1d1d;
+  overflow-x: hidden;
+}
