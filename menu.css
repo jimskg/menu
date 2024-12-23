@@ -119,8 +119,6 @@ h6 {
 .topnav {
   overflow: hidden;
   position: relative;
-  display:flex;
-  justify-content: space-between;
   align-items:center;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -195,6 +193,11 @@ h6 {
   line-height: 2rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-xs {
   font-size: .75rem;
   line-height: 1rem;
@@ -214,6 +217,10 @@ h6 {
   transform: rotate(270deg);
 }
 
+.bottom-0 {
+  bottom: 0;
+}
+
 .top-9 {
   top: 9rem;
 }
@@ -224,6 +231,10 @@ h6 {
 
 .p-05 {
   padding: 0.5rem;
+}
+
+.p-150 {
+  padding: 1.5rem;
 }
 
 .pb-125 {
@@ -243,6 +254,11 @@ h6 {
 .py-05 {
   padding-top: .5rem;
   padding-bottom: .5rem;
+}
+
+.py-150 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .px-05 {
@@ -269,6 +285,10 @@ h6 {
 
 .margin-top-05 {
   margin-top: .5rem;
+}
+
+.margin-top-1 {
+  margin-top: 1rem;
 }
 
 .margin-top-250 {
@@ -417,6 +437,10 @@ h6 {
   align-items: flex-start;
 }
 
+.items-center {
+  align-items: center;
+}
+
 .inline-flex {
   display: inline-flex;
 }
@@ -511,8 +535,20 @@ h6 {
     opacity:1
   }
 }
+
 .animate-modalFadeTop {
   animation:modalFadeTop .7s ease-in-out
+}
+
+@keyframes slideUp {
+  from {
+    top: 150%;
+    transform: translate(-50%, 0);
+  }
+  to {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .ease-out {
@@ -566,7 +602,6 @@ h6 {
   --tw-scale-y: 1.02;
   transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
-
 
 .btn {
   display: flex;
@@ -623,7 +658,7 @@ h6 {
     position: fixed;
 }
 
-.button-side-menu {
+.button-side-menu, .button-product-modal {
   opacity: .4;
   background-color: rgb(0 0 0/var(--tw-bg-opacity,1));
   width: 100vw;
@@ -699,3 +734,53 @@ h6 {
   background-color: rgb(142 201 199/var(--tw-bg-opacity,1));
 }
 
+.product-modal {
+  background-color: rgba(0,0,0,.6);
+  z-index:30;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  position:fixed;
+}
+
+.product-modal-card-container {
+  background-color: rgb(255 255 255/var(--tw-bg-opacity,1));
+  border-radius: 1rem;
+  overflow: auto;
+  max-width: 36rem;
+  position: fixed;
+  left: 50%;
+  top: 150%;
+  transform: translate(-50%, 0);
+  animation: slideUp 0.7s ease-in-out forwards;
+}
+
+.product-modal-card {
+  border-radius: 1rem;
+  overflow: auto;
+  flex-direction: column;
+  max-height: 80vh;
+  display: flex;
+  overflow: auto !important;
+}
+
+.product-modal-image {
+  object-fit: cover;
+  max-height: 300px;
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+}
+
+.x-modal-card-button-container {
+  position: absolute;
+  right: 0;
+}
+
+.x-modal-card-button:hover {
+  background-color: rgb(142 201 199/var(--tw-bg-opacity,1));
+  color: white;
+  opacity: 0.9;
+  border-radius: .375rem;
+}

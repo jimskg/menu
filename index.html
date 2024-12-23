@@ -6,6 +6,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script type="text/javascript" src="menu.js"></script>
     <style>
       @import url('http://fonts.cdnfonts.com/css/la-belle-aurore');
@@ -13,11 +14,25 @@
   </head>
 
   <body>
-    <div class="container">
+
+    <div class="container display-none" id="container-maintenance">
+      <div class="">
+        <div class="topnav sticky gap-1 animate-fadeBottom">
+          <div class="container">
+            <img src="images/nutri_spot_transparent.png" width="100" height="100"></img>
+          </div>
+          <div class="container py-150">
+            <h3 class="font-bold text-primary">Sorry, we are down for maintenace</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container display-none" id="container">
       <div class="container-inside">
 
         <!-- TOP BAR START -->
-        <div class="topnav sticky gap-1 animate-fadeBottom" id="dimitris">
+        <div class="topnav flex justify-between sticky gap-1 animate-fadeBottom">
           <a class="menu-icon bg-primary" id="menu-icon">
             <i class="fa fa-bars"></i>
           </a>
@@ -72,9 +87,9 @@
   </footer>
   <!-- FOOTER END -->
 
-  <!-- SIDE MENU STAER -->
+  <!-- SIDE MENU START -->
   <div class="side-container-menu display-none" id="side-container-menu">
-    <button class="button-side-menu cursor-pointer" id="button-side-menu" type="button"></button>
+    <button class="button-side-menu" id="button-side-menu" type="button"></button>
     <aside class="side-menu gap-1 flex-col w-full flex" id="side-menu">
       <div class="x-button-container">
         <div class="btn x-button" id="x-button">
@@ -90,5 +105,57 @@
     </aside>
   </div>
   <!-- SIDE MENU END -->
+
+  <!-- PRODUCT MODAL START -->
+  <div class="product-modal display-none" id="product-modal">
+    <button class="button-product-modal" id="button-product-modal" type="button"></button>
+    <div class="product-modal-card-container">
+      <div class="product-modal-card">
+        <div class="x-modal-card-button-container p-05" >
+          <div class="x-modal-card-button p-05 cursor-pointer" id="x-modal-card-button">
+            <img src="images/closebutton.png" width="30" height="18"></img>
+          </div>
+        </div>
+        <div class="flex flex-col" id="product-modal-card-item">
+
+
+          <!-- <div>
+            <img class="product-modal-image" src="images/xarouposokolatompoukies.jpg" width="400" height="200"> </img>
+          </div>
+          <div class="p-150">
+            <h1 class="font-bold text-3xl">Quinoa Cookie</h1>
+            <div class="flex flex-wrap items-center gap-05 margin-top-1">
+              <div class="flex flex-wrap gap-025">
+                <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
+                  dimitris
+                </div>
+                <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
+                  dimitris
+                </div>
+              </div>
+            </div>
+            <p>Με 100% Αλεύρι βρώμης χωρίς γλουτένη κακάο και φουντούκια</p>
+            <div></div>
+          </div>
+          <div class="sticky bottom-0 flex justify-between items-center p-150 bg-white text-baseContent ">
+            <div class="text-primary text-xl">
+              <div class="flex flex-col items-start">
+                <div class="flex flex-col items-start">
+                  <div clas="text-lg font-semibold text-primary inline-flex gap-025 margin-top-auto">
+                    2.50
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- PRODUCT MODAL END -->
 
 </html>
