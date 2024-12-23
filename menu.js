@@ -1,19 +1,52 @@
 (function ($) {
   $(function () {
+
+    let currentLanguage = 'gr';
+    
+    const translations = {
+        gr: {
+            categories: {
+                healthy: 'Υγιεινά'
+            },
+            products: {
+                xarouposokolatompoukies: {
+                  title: "Χαρουποσοκολατομπουκιές",
+                  firstText: "Με χαρουπάλευρο, κακάο, μέλι, φυστικοβουτυρο, λάδι καρύδας και χυμό ανανά",
+                  secondText: ""
+                },
+                strawberry_boundy: {
+                  title: "Strawberry Bounty (5 τεμάχια)",
+                  firstText: "Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη",
+                  secondText: ""
+                }
+            }
+        },
+        en: {
+            categories: {
+                healthy: 'Healthy'
+            },
+            products: {
+                xarouposokolatompoukies: {
+                  title: "Carob Chocolate Bites",
+                  firstText: "With carob flour, cocoa, honey, peanut butter, coconut oil, and pineapple juice",
+                  secondText: ""
+                },
+                strawberry_boundy: {
+                  title: "Strawberry Bounty (5 pieces)",
+                  firstText: "With desiccated coconut, light coconut milk, mashed strawberries, honey, and chocolate for topping",
+                  secondText: ""
+                }
+            }
+        }
+    };
     
     const categories = [
-      { id: "healthy", name: 'healthy', title: "Υγιεινά"},
-      { id: "healthy1", name: 'healthy', title: "kati"},
-      { id: "healthy2", name: 'healthy', title: "kati allo"},
+      { id: "healthy", name: 'healthy'},
     ];
 
     const products = [
-      { id: "xarouposokolatompoukies", categoryId: "healthy", name: "xarouposokolatompoukies", title: "Χαρουποσοκολατομπουκιές", firstText: "Με χαρουπάλευρο, κακάο, μέλι, φυστικοβουτυρο, λάδι καρύδας και χυμό ανανά", secondText: "", photo: "images/xarouposokolatompoukies.jpg", tiles: "sugarfree;low calories;vegan;", price: "€3.50", href: "www.google.gr" },
-      { id: "strawberry_boundy", categoryId: "healthy", name: "Strawberry boundy", title: "Strawberry boundy (5 pieces)", firstText: "Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη", secondText: "", photo: "images/strawberryboundy.jpg", tiles: "sugarfree;low calories;chocolate;", price: "€4.00", href: "www.google.gr" },
-      { id: "xarouposokolatompoukies", categoryId: "healthy1", name: "xarouposokolatompoukies", title: "Χαρουποσοκολατομπουκιές", firstText: "Με χαρουπάλευρο, κακάο, μέλι, φυστικοβουτυρο, λάδι καρύδας και χυμό ανανά", secondText: "", photo: "images/xarouposokolatompoukies.jpg", tiles: "sugarfree;low calories;vegan;", price: "€3.50", href: "www.google.gr" },
-      { id: "strawberry_boundy", categoryId: "healthy1", name: "Strawberry boundy", title: "Strawberry boundy (5 pieces)", firstText: "Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη", secondText: "", photo: "images/strawberryboundy.jpg", tiles: "sugarfree;low calories;chocolate;", price: "€4.00", href: "www.google.gr" },
-      { id: "xarouposokolatompoukies", categoryId: "healthy2", name: "xarouposokolatompoukies", title: "Χαρουποσοκολατομπουκιές", firstText: "Με χαρουπάλευρο, κακάο, μέλι, φυστικοβουτυρο, λάδι καρύδας και χυμό ανανά", secondText: "", photo: "images/xarouposokolatompoukies.jpg", tiles: "sugarfree;low calories;vegan;", price: "€3.50", href: "www.google.gr" },
-      { id: "strawberry_boundy", categoryId: "healthy2", name: "Strawberry boundy", title: "Strawberry boundy (5 pieces)", firstText: "Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη", secondText: "", photo: "images/strawberryboundy.jpg", tiles: "sugarfree;low calories;chocolate;", price: "€4.00", href: "www.google.gr" },
+      { id: "xarouposokolatompoukies", categoryId: "healthy", photo: "images/xarouposokolatompoukies.jpg", tiles: "sugarfree;low calories;vegan;", price: "€3.50", href: "www.google.gr" },
+      { id: "strawberry_boundy", categoryId: "healthy", photo: "images/strawberryboundy.jpg", tiles: "sugarfree;low calories;chocolate;", price: "€4.00", href: "www.google.gr" },
     ];
 
 
@@ -42,15 +75,21 @@
       categories.forEach(category => {
           if (!categoryMap[category.id]) return;
 
+          let translateCategoryTitle = translations[currentLanguage].categories[category.id];
+
           const container = document.createElement('div');
           const li = document.createElement('li');
           const aTag = document.createElement('a');
           if (i!=1) {
             container.className = 'margin-top-250';
-            li.className = 'border-t';
-            li.href = '#'+category.id;
+            li.className = 'border-t border-solid';
           }
+          //aTag.href = '#'+category.id;
+          aTag.innerHTML = translateCategoryTitle.toUpperCase();
           aTag.className = 'btn text-primary font-bold a-tag-category';
+          aTag.onclick = () => {
+            goToAnchorAndCloseSideMenu(category.id);
+          };
 
           cardsBody.appendChild(container);
           li.appendChild(aTag);
@@ -61,7 +100,7 @@
           categoryTitle.className = 'category-title transition-all duration-1000 ease-out';
           categoryTitle.innerHTML = `
               <div class="py-05 margin-bottom-1 w-full border-b border-solid border-primary border-opacity-50">
-                  <h1 id="${category.name}" class="text-primary font-bold text-xl">${category.title.toUpperCase()}</h1>
+                  <h1 id="${category.id}" class="text-primary font-bold text-xl">${translateCategoryTitle.toUpperCase()}</h1>
               </div>
           `;
           container.appendChild(categoryTitle);
@@ -72,6 +111,8 @@
 
           categoryMap[category.id].forEach(product => {
               // Create product card
+              let translatedProductTitle = translations[currentLanguage].products[product.id].title;
+              let translatedProfuctFirstText = translations[currentLanguage].products[product.id].firstText;
               const cardContainer = document.createElement('div');
               cardContainer.className = 'card-container transition-all duration-1000 ease-out';
 
@@ -80,7 +121,7 @@
               card.href = product.href;
 
               card.innerHTML = `
-                  <h1 class="font-semibold" id="${product.categoryId}">${product.title}</h1>
+                  <h1 class="font-semibold">${translatedProductTitle}</h1>
                   <div class="flex flex-wrap gap-025">
                       ${product.tiles.split(';').filter(tile => tile).map(tile => `
                           <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
@@ -89,7 +130,7 @@
                   </div>
                   <div class="flex w-full h-full justify-between">
                       <div class="flex flex-col w-full pr-1 gap-05">
-                          <p class="text-sm">${product.firstText}</p>
+                          <p class="text-sm">${translatedProfuctFirstText}</p>
                       </div>
                       <div class="margin-top-05 self-center">
                           <img class="product-image" src="${product.photo}" width="400" height="200">
@@ -112,29 +153,113 @@
           i++;
       });
     }
-  
-    $('#button-side-menu').on('click', function () {
-      const sideContainerMenu = document.getElementById("side-container-menu");
-      sideContainerMenu.classList.remove("displayBlock");
-      sideContainerMenu.classList.add("displayNone");
-    });
 
     $('#menu-icon').on('click', function () {
-      const sideContainerMenu = document.getElementById("side-container-menu");
-      console.log('kati');
-      sideContainerMenu.classList.add("displayBlock");
-      sideContainerMenu.classList.remove("displayNone");
+      openSideMenu()
     });
+
+    $('#x-button').on('click', function () {
+      closeSideMenu()
+    });
+
+    $('#button-side-menu').on('click', function () {
+      closeSideMenu();
+    });
+
+    $('#lang-button').on('click', function () {
+      openLanguageMenu();
+    });
+
+    $('#btn-arrow').on('click', function () {
+      scrollToTop();
+    });
+
+    $('#gr-li').on('click', function () {
+      closeLanguageMenu();
+      if (currentLanguage == 'gr') return;
+      //switchLanguageElements('gr-li', 'en-li');
+      currentLanguage = 'gr';
+      createProducts();
+    });
+
+    $('#en-li').on('click', function () {
+      closeLanguageMenu();
+      if (currentLanguage == 'en') return;
+      //switchLanguageElements('en-li', 'gr-li');
+      currentLanguage = 'en';
+      createProducts();
+    });
+
+    // function switchLanguageElements(elementToMakePrimary, elementToMakeSecondary){
+    //   const newPrimary = document.getElementById(elementToMakePrimary);
+    //   newPrimary.classList.add("text-primaryContent");
+    //   newPrimary.classList.add("bg-primary");
+    //   newPrimary.classList.remove("text-secondaryContent");
+    //   newPrimary.classList.remove("bg-white");
+
+    //   const newSecondary = document.getElementById(elementToMakeSecondary);
+    //   newSecondary.classList.remove("text-primaryContent");
+    //   newSecondary.classList.remove("bg-primary");
+    //   newSecondary.classList.add("text-secondaryContent");
+    //   newSecondary.classList.add("bg-white");
+    // }
+
+    function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+      }); 
+    }
+
+    function closeLanguageMenu(){
+      const listLanguageMenu = document.getElementById("list-language-menu");
+      listLanguageMenu.classList.add("display-none");
+    }
+
+    function openLanguageMenu(){
+      const listLanguageMenu = document.getElementById("list-language-menu");
+      listLanguageMenu.classList.remove("display-none");
+    }
+
+    function closeSideMenu(){
+      const sideContainerMenu = document.getElementById("side-container-menu");
+      sideContainerMenu.classList.add("display-none");
+    }
+
+    function openSideMenu(){
+      const sideContainerMenu = document.getElementById("side-container-menu");
+      sideContainerMenu.classList.remove("display-none");
+    }
+
+    function goToAnchorAndCloseSideMenu(categoryId){
+      var element = document.getElementById(categoryId);
+      var headerOffset = 176;
+      var elementPosition = element.getBoundingClientRect().top;
+      var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+      });   
+      closeSideMenu();
+    }
     
   });
 
-  
+  window.onscroll = function(event) {
+    const scrollBtn = document.getElementById("btn-arrow");
+    window.scrollY > window.innerHeight - 500
+      ? scrollBtn.classList.add("show")
+      : scrollBtn.classList.remove("show");
+  }
+
   window.onclick = function(event) {
-    var carouselModal = document.getElementById("carousel-modal-id");
-    if (event.target == carouselModal) {
-      carouselModal.remove();
-      //carouselModal.style.display = "none";
+    const listLangMenu = document.getElementById('list-language-menu');
+    const langButton = document.getElementById('lang-button');
+    const langButtonImg = document.getElementById('lang-button-img');
+    if (!(listLangMenu.contains(event.target) || langButton.contains(event.target) || langButtonImg.contains(event.target)) ){
+      const listLanguageMenu = document.getElementById("list-language-menu");
+      listLanguageMenu.classList.add("display-none");
     }
-  } 
+  }
   
 })(jQuery);
