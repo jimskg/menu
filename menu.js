@@ -25,7 +25,10 @@
         // Create an object to store the categories, products, and translations
         const categories = [];
         const products = [];
-        const translations = { gr: { categories: {}, products: {} }, en: { categories: {}, products: {} } };
+        const translations = { 
+          gr: { categories: {}, offers: {}, products: {}, offerProducts: {} }, 
+          en: { categories: {}, offers: {}, products: {}, offerProducts: {} } 
+        };
         const offers = [];
         const offerProducts = [];
 
@@ -68,8 +71,8 @@
 
           if (sheetName === "Offers") {
             rows.forEach(row => {
-              const [id, name] = row; // Map columns based on the sheet structure
-              offers.push({ id, name });
+              const [id, name, time] = row; // Map columns based on the sheet structure
+              offers.push({ id, name, time });
             });
           }
 
@@ -88,6 +91,9 @@
                 // If translation is for category, map to the appropriate language object
                 translations.gr.categories[id] = { title: greekTitle };
                 translations.en.categories[id] = { title: englishTitle };
+              } else if (type === 'offer') {
+                translations.gr.offers[id] = { title: greekTitle };
+                translations.en.offers[id] = { title: englishTitle };
               } else if (type === 'product') {
                 // If translation is for product, map to the appropriate language object
                 translations.gr.products[id] = {
@@ -96,6 +102,17 @@
                   secondText: greekSecondText || ""
                 };
                 translations.en.products[id] = {
+                  title: englishTitle,
+                  firstText: englishFirstText,
+                  secondText: englishSecondText || ""
+                };
+              } else if (type === 'offerProduct'){
+                translations.gr.offerProducts[id] = {
+                  title: greekTitle,
+                  firstText: greekFirstText,
+                  secondText: greekSecondText || ""
+                };
+                translations.en.offerProducts[id] = {
                   title: englishTitle,
                   firstText: englishFirstText,
                   secondText: englishSecondText || ""
@@ -134,6 +151,11 @@
                   title: 'Υγιεινά'
                 }
             },
+            offers: {
+                tuesdays_day: {
+                  title: 'piato tritis'
+                }
+            },
             products: {
                 xarouposokolatompoukies: {
                   title: "Χαρουποσοκολατομπουκιές",
@@ -145,12 +167,24 @@
                   firstText: "Με ινδοκάρυδο, γάλα καρύδας light, λιωμένες φράουλες, μέλι και σοκολάτα για επικάλυψη",
                   secondText: ""
                 }
+            },
+            offerProducts: {
+                prosfora_1: {
+                  title: "onoma prosforas 1",
+                  firstText: "kati kati kati",
+                  secondText: ""
+                }
             }
         },
         en: {
             categories: {
                 healthy: {
                   title: 'Healthy'
+                }
+            },
+            offers: {
+                tuesdays_day: {
+                  title: 'tuesday's dish of the day'
                 }
             },
             products: {
@@ -164,6 +198,13 @@
                   firstText: "With desiccated coconut, light coconut milk, mashed strawberries, honey, and chocolate for topping",
                   secondText: ""
                 }
+            },
+            offerProducts: {
+                prosfora_1: {
+                  title: "first offers name",
+                  firstText: "something something",
+                  secondText: ""
+                }
             }
         }
     };
@@ -175,6 +216,14 @@
       },
     ];
 
+    const offers = [
+      { 
+        id: "tuesdays_day", 
+        name: 'tuesday's dish of the day',
+        time: "17:00 - 23:00"
+      },
+    ];
+
     const products = [
       { 
         id: "xarouposokolatompoukies", 
@@ -182,8 +231,7 @@
         photo: "images/xarouposokolatompoukies.jpg", 
         tiles: "sugarfree;low calories;vegan;", 
         price: "€3.50", 
-        kcal: "147", 
-        //href: "www.google.gr" 
+        secondTile: "sugarfree;low calories;vegan;"
       },
       { 
         id: "strawberry_boundy", 
@@ -191,9 +239,19 @@
         photo: "images/strawberryboundy.jpg", 
         tiles: "sugarfree;low calories;chocolate;", 
         price: "€4.00", 
-        kcal: "157", 
-        //href: "www.google.gr" 
+        secondTile: "sugarfree;low calories;vegan;"
       },
+    ];
+
+    const offerProducts = [
+      { 
+        id: "prosfora_1", 
+        offerId: "tuesdays_day", 
+        photo: "images/xarouposokolatompoukies.jpg", 
+        tiles: "sugarfree;low calories;vegan;", 
+        price: "€3.50", 
+        secondTile: "sugarfree;low calories;vegan;"
+      }
     ];
     EXAMPLE JSONS END */
 
@@ -214,18 +272,20 @@
       if (breakIfDownForMaintenance) return;
 
       // Group products by offer
-      const offerMap = {};
-      outputData.offerProducts.forEach(offProduct => {
-          if (!offerMap[offProduct.offerId]) {
-              offerMap[offProduct.offerId] = [];
-          }
-          offerMap[offProduct.offerId].push(offProduct);
-      });
+      // const offerMap = {};
+      // outputData.offerProducts.forEach(offProduct => {
+      //     if (!offerMap[offProduct.offerId]) {
+      //         offerMap[offProduct.offerId] = [];
+      //     }
+      //     offerMap[offProduct.offerId].push(offProduct);
+      // });
       
       const offersContainer = document.getElementById('offers-container');
+      offersContainer.innerHTML = '';
 
       outputData.offers.forEach(offer => {
-        if (!offerMap[offer.id]) return;
+        //if (!offerMap[offer.id]) return;
+        let translatedOfferTitle = outputData.translations[currentLanguage].offers[offer.id].title;
         const offerDiv = document.createElement('div');
         
         offerDiv.onclick = () => {
@@ -233,9 +293,9 @@
         };
 
         offerDiv.innerHTML = `
-          <div class="btn bg-secondary text-secondaryContent" type="button">
+          <div class="btn p-05 bg-secondary text-secondaryContent" type="button">
             <div class="text-2xl"></div>
-            <div class="pr-05">${offer.name.toUpperCase()}</div>
+            <div class="pr-05">${translatedOfferTitle.toUpperCase()}</div>
           </div>
         `
             
@@ -244,11 +304,110 @@
     }
 
     function createOfferModal(offerId) {
+      
+      let translatedOfferTitle = outputData.translations[currentLanguage].offers[offerId].title;
+      const offer = outputData.offers.find(f => f.id === offerId);
+
+      let atLeastOneOffProductExist = false;
+
+      const offerProductsContainer = document.getElementById('offer-products-container');
+      offerProductsContainer.innerHTML = '';
+
+      const offerContainer = document.getElementById('offer-container');
+      offerContainer.innerHTML = '';
+
+      const offerDivFirst = document.createElement('div');
+      offerDivFirst.className = 'overflow-hidden py-025 px-05';
+
+      const offerDivSecond = document.createElement('div');
+      offerDivSecond.className = 'flex fade-in-section transition-all duration-1000 ease-out';
+
+      const offerDivThird = document.createElement('div');
+      offerDivThird.className = 'grid grid-cols-2 gap-1 w-full';
+
+      offerContainer.innerHTML = `
+        <div class="w-fit h-fit py-05 px-150 text-xl bg-secondary text-secondaryContent rounded-md animate-bounce">${translatedOfferTitle.toUpperCase()}</div>
+        <h2 class="font-semibold text-secondary">${offer.time}</h2>
+      `;
+
       outputData.offerProducts.forEach(offProduct => {
-        if (offProduct.id == offerId && offProduct.isActive == 'TRUE'){
+        if (offProduct.offerId == offerId && offProduct.isActive == 'TRUE'){
+          atLeastOneOffProductExist = true;
+          let translatedOfferProductTitle = outputData.translations[currentLanguage].offerProducts[offProduct.id].title;
+          let translatedOfferProductFirstText = outputData.translations[currentLanguage].offerProducts[offProduct.id].firstText;
+          let translatedOfferProductSecondText = outputData.translations[currentLanguage].offerProducts[offProduct.id].secondText;
+
+          const offerCard = document.createElement('div');
+          offerCard.className = 'card-container transition-all duration-1000 ease-out';
+
+          const card = document.createElement('a');
+          card.className = 'card transition-all duration-200 ease-in-out px-1 py-05 border-solid cursor-pointer';
+          card.onclick = () => {
+            createProductModal(offProduct.id, 'offerProduct');
+          };
+
+          card.innerHTML =  `
+            <h1 class="font-semibold">${translatedOfferProductTitle}</h1>
+            <div class="flex flex-wrap gap-025">
+              ${offProduct.tiles.split(';').filter(tile => tile).map(tile => `
+                <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
+                    ${tile.toUpperCase()}
+                </div>`).join('')}
+            </div>
+            <div class="flex w-full h-full justify-between">
+                <div class="flex flex-col w-full pr-1 gap-05">
+                    <p class="text-sm">${translatedOfferProductFirstText || ''}</p>
+                    <div class="line-clamp-3">
+                      <p class="text-secondary text-sm"> ${translatedOfferProductSecondText || ''}</p>
+                    </div>
+                </div>
+                ${
+                  offProduct.photo ? `
+                    <div class="margin-top-05 self-center">
+                      <img class="product-image" src="${offProduct.photo}" width="400" height="200">
+                    </div> `
+                    : ''
+                }
+            </div>
+            <div class="flex justify-between pt-05">
+                <div class="flex flex-col items-start">
+                    <div class="margin-top-auto text-lg font-semibold text-primary inline-flex gap-05">
+                      ${offProduct.price}
+                    </div>
+                </div>
+                ${
+                  offProduct.secondTiles ? `
+                    <div class="flex items-center">
+                    <div class="w-fit">
+                        <div class="flex flex-wrap gap-025">
+                        ${offProduct.secondTiles.split(';').filter(secondTile => secondTile).map(secondTile => `
+                            <div class="w-fit h-fit py-025 px-05 text-xs truncate rounded-lg bg-secondary text-secondaryContent">
+                                ${ secondTile.includes('kcal') ? secondTile : secondTile.toUpperCase()}
+                            </div>`).join('')}
+                        </div>
+                    </div>
+                    </div> `
+                    : ''
+                }
+            </div>
+          `;
           
+          offerCard.appendChild(card);
+          offerDivThird.appendChild(offerCard);
         }
       });
+      
+      if (!atLeastOneOffProductExist){
+        offerProductsContainer.innerHTML = `
+          <div class="flex justify-center text-xl font-bold text-primary">Unfortunately, there are no products available for this event.</div>
+        `;
+      } else {
+        offerDivSecond.appendChild(offerDivThird);
+        offerDivFirst.appendChild(offerDivSecond);
+        offerProductsContainer.appendChild(offerDivFirst);
+      }
+
+      openOfferModal();
     }
 
     function createProducts(){
@@ -274,7 +433,7 @@
       outputData.categories.forEach(category => {
           if (!categoryMap[category.id]) return;
 
-          let translateCategoryTitle = outputData.translations[currentLanguage].categories[category.id].title;
+          let translatedCategoryTitle = outputData.translations[currentLanguage].categories[category.id].title;
 
           const container = document.createElement('div');
           const li = document.createElement('li');
@@ -284,8 +443,8 @@
             li.className = 'border-t border-solid';
           }
           //aTag.href = '#'+category.id;
-          aTag.innerHTML = translateCategoryTitle.toUpperCase();
-          aTag.className = 'btn text-primary font-bold a-tag-category';
+          aTag.innerHTML = translatedCategoryTitle.toUpperCase();
+          aTag.className = 'btn p-05 text-primary font-bold a-tag-category';
           aTag.onclick = () => {
             goToAnchorAndCloseSideMenu(category.id);
           };
@@ -299,7 +458,7 @@
           categoryTitle.className = 'category-title transition-all duration-1000 ease-out';
           categoryTitle.innerHTML = `
               <div class="py-05 margin-bottom-1 w-full border-b border-solid border-primary border-opacity-50">
-                  <h1 id="${category.id}" class="text-primary font-bold text-xl">${translateCategoryTitle.toUpperCase()}</h1>
+                  <h1 id="${category.id}" class="text-primary font-bold text-xl">${translatedCategoryTitle.toUpperCase()}</h1>
               </div>
           `;
           container.appendChild(categoryTitle);
@@ -320,7 +479,7 @@
               card.className = 'card gap-025 transition-all duration-200 ease-in-out px-1 py-05 border-solid cursor-pointer';
               //card.href = product.href;
               card.onclick = () => {
-                createProductModal(product.id);
+                createProductModal(product.id, 'product');
               };
 
               card.innerHTML = `
@@ -374,9 +533,24 @@
       });
     }
 
-    function createProductModal(productId) {
+    function createProductModal(productId, typeOfProduct) {
       // Find the product by ID
-      const product = outputData.products.find(p => p.id === productId);
+      let product;
+      let translatedProductTitle;
+      let translatedProductFirstText;
+      let translatedProductSecondText;
+
+      if (typeOfProduct === 'product'){
+        product = outputData.products.find(p => p.id === productId);
+        translatedProductTitle = outputData.translations[currentLanguage].products[product.id].title;
+        translatedProductFirstText = outputData.translations[currentLanguage].products[product.id].firstText;
+        translatedProductSecondText = outputData.translations[currentLanguage].products[product.id].secondText;
+      } else if (typeOfProduct === 'offerProduct'){
+        product = outputData.offerProducts.find(f => f.id === productId);
+        translatedProductTitle = outputData.translations[currentLanguage].offerProducts[product.id].title;
+        translatedProductFirstText = outputData.translations[currentLanguage].offerProducts[product.id].firstText;
+        translatedProductSecondText = outputData.translations[currentLanguage].offerProducts[product.id].secondText;
+      }
     
       if (!product) {
         console.error('Product not found!');
@@ -385,16 +559,15 @@
     
       // Extract tiles
       const tiles = product.tiles.split(';').filter(tile => tile); // Split and remove empty values
-    
-      // Create HTML structure
-      let translatedProductTitle = outputData.translations[currentLanguage].products[product.id].title;
-      let translatedProductFirstText = outputData.translations[currentLanguage].products[product.id].firstText;
-      let translatedProductSecondText = outputData.translations[currentLanguage].products[product.id].secondText;
 
       const cardModal = `
-        <div>
-          <img class="product-modal-image" src="${product.photo}" width="400" height="200">
-        </div>
+        ${
+          product.photo ? `
+            <div>
+              <img class="product-modal-image" src="${product.photo}" width="400" height="200">
+            </div> `
+            : ''
+        }
         <div class="p-150">
           <h1 class="font-bold text-3xl">${translatedProductTitle || ''}</h1>
           <div class="flex flex-wrap items-center gap-05 margin-top-1">
@@ -455,12 +628,20 @@
       closeProductModal();
     });
 
-    $('#button-side-menu').on('click', function () {
-      closeSideMenu();
-    });
-
     $('#button-product-modal').on('click', function () {
       closeProductModal();
+    });
+
+    $('#x-modal-offer-button').on('click', function () {
+      closeOfferModal();
+    });
+
+    $('#return-modal-offer-button').on('click', function () {
+      closeOfferModal();
+    });
+
+    $('#button-side-menu').on('click', function () {
+      closeSideMenu();
     });
 
     $('#lang-button').on('click', function () {
@@ -476,6 +657,7 @@
       if (currentLanguage == 'gr') return;
       currentLanguage = 'gr';
       createProducts();
+      createOffers();
     });
 
     $('#en-li').on('click', function () {
@@ -483,6 +665,7 @@
       if (currentLanguage == 'en') return;
       currentLanguage = 'en';
       createProducts();
+      createOffers();
     });
 
     function scrollToTop() {
@@ -520,6 +703,24 @@
     function openProductModal(){
       const productModal = document.getElementById("product-modal");
       productModal.classList.remove("display-none");
+    }
+
+    function closeOfferModal(){
+      const offerModal = document.getElementById("offer-modal");
+      offerModal.classList.add("display-none");
+      const cardsBody = document.getElementById("cards-body");
+      cardsBody.classList.remove("display-none");
+      const footer = document.getElementById("footer");
+      footer.classList.remove("display-none");
+    }
+    
+    function openOfferModal(){
+      const offerModal = document.getElementById("offer-modal");
+      offerModal.classList.remove("display-none");
+      const cardsBody = document.getElementById("cards-body");
+      cardsBody.classList.add("display-none");
+      const footer = document.getElementById("footer");
+      footer.classList.add("display-none");
     }
 
     function closeLoadingSpinner(){

@@ -1,5 +1,6 @@
 <html>
   <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+  <title>Nutri Spot</title>
   <head>
     <link rel="stylesheet" href="menu.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,7 +23,6 @@
   </div>
 
   <body>
-
     <div class="container display-none" id="container-maintenance">
       <div class="">
         <div class="topnav z-index-20 sticky gap-1 animate-fadeBottom">
@@ -59,7 +59,7 @@
 
         <!-- ARROW BUTTON START -->
         <div class="btn-arrow" id="btn-arrow">
-          <div type="button" class="bg-secondary text-secondaryContent btn">
+          <div type="button" class="bg-secondary text-secondaryContent btn p-05">
             <div class="text-2xl">
               <img class="transform-270" src="images/uparrow.png" width="24" height="24"></img>
             </div>
@@ -71,13 +71,13 @@
         <div class="sticky top-11 z-index-10 margin-top-05 bg-white flex justify-center">
           <div class="flex p-05 gap-05" id="offers-container">
             <!-- <div>
-              <div class="btn bg-secondary text-secondaryContent" type="button">
+              <div class="btn p-05 bg-secondary text-secondaryContent" type="button">
                 <div class="text-2xl"></div>
                 <div class="pr-05">TUESDAY'S DISH OF THE DAY</div>
               </div>
             </div>
             <div>
-              <div class="btn bg-secondary text-secondaryContent" type="button">
+              <div class="btn p-05 bg-secondary text-secondaryContent" type="button">
                 <div class="text-2xl"></div>
                 <div class="pr-05">TUESDAY'S DISH OF THE DAY</div>
               </div>
@@ -88,16 +88,15 @@
 
         <!-- BODY CARDS START -->
         <div id="cards-body" class="px-250 pb-125">
-            
           <!-- <div>
             <div class="category-title transition-all duration-1000 ease-out">
               <div class="py-05 margin-bottom-1 w-full border-b border-solid border-primary border-opacity-50">
-                <h1 id="dimtitris" class="text-primary font-bold text-xl">dimitris</h1>
+                <h1 id="something" class="text-primary font-bold text-xl">dimitris</h1>
               </div>
             </div>
             <div class="grid grid-cols-2 gap-1">
               <div class="card-container transition-all duration-1000 ease-out">
-                <div class="card transition-all duration-200 ease-in-out px-1 py-05 border-solid cursor-pointer">
+                <a class="card transition-all duration-200 ease-in-out px-1 py-05 border-solid cursor-pointer">
                   <h1 class="font-semibold">dimitris</h1>
                   <div class="flex flex-wrap gap-025">
                           <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
@@ -110,6 +109,9 @@
                   <div class="flex w-full h-full justify-between">
                       <div class="flex flex-col w-full pr-1 gap-05">
                           <p class="text-sm">dimitris</p>
+                          <div class="line-clamp-3">
+                            <p class="text-secondary text-sm">second text </p>
+                          </div>
                       </div>
                       <div class="margin-top-05 self-center">
                           <img class="product-image" src="images/xarouposokolatompoukies.jpg" width="400" height="200">
@@ -134,11 +136,10 @@
                         </div>
                       </div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div> -->
-
         </div>
         <!-- BODY CARDS END -->
 
@@ -147,10 +148,10 @@
   </body>
 
   <!-- FOOTER START -->
-  <footer class="footer border-t border-primary">
+  <footer id="footer" class="footer border-t border-primary">
     <div class="footer-info">
       <h3 class="font-bold text-primary">Explore more at</h3>
-      <a class="btn pad-0 text-secondary font-bold hover:opacity-80 text-xl" type="button" target="_blank" href="https://www.instagram.com/the_nutri_spot_/">www.nutri-spot.gr</a>
+      <a class="btn p-05 pad-0 text-secondary font-bold hover:opacity-80 text-xl" type="button" target="_blank" href="https://www.instagram.com/the_nutri_spot_/">www.nutri-spot.gr</a>
       <h3 class="font-bold text-primary margin-top-05">Stay connected</h3>
       <a class="margin-top-05" type="button" target="_blank" href="https://www.instagram.com/the_nutri_spot_/">
         <span>
@@ -166,7 +167,7 @@
     <button class="button-side-menu" id="button-side-menu" type="button"></button>
     <aside class="side-menu gap-1 flex-col w-full flex" id="side-menu">
       <div class="x-button-container">
-        <div class="btn x-button" id="x-button">
+        <div class="btn p-05 x-button" id="x-button">
           <div class="text-2xl">
             <img src="images/closebutton.png" width="30" height="18"></img>
           </div>
@@ -181,7 +182,7 @@
   <!-- SIDE MENU END -->
 
   <!-- PRODUCT MODAL START -->
-  <div class="product-modal z-index-30 display-none" id="product-modal">
+  <div class="product-modal z-index-50 display-none" id="product-modal">
     <button class="button-product-modal" id="button-product-modal" type="button"></button>
     <div class="product-modal-card-container">
       <div class="product-modal-card">
@@ -228,5 +229,74 @@
     </div>
   </div>
   <!-- PRODUCT MODAL END -->
+
+  <!-- OFFER MODAL START -->
+   <div class="fixed top-0 right-0 z-index-40 display-none" id="offer-modal">
+    <aside class="fixed flex flex-col items-center gap-1 p-1 bg-white text-thirdContent overflow-auto inset-0 min-h-screen h-screen animate-fadeTop">
+
+      <div class="x-button-container">
+        <div class="btn p-05 x-button" id="x-modal-offer-button">
+          <img src="images/closebutton.png" width="30" height="18"></img>
+        </div>
+      </div>
+      <div class="flex fade-in-section transition-all duration-1000 ease-out flex-col gap-1 items-center margin-top-1" id="offer-container">
+        <!-- <div class="w-fit h-fit py-05 px-150 text-xl bg-secondary text-secondaryContent rounded-md animate-bounce">PORRIDGE OF THE MONTH</div>
+        <h2 class="font-semibold text-secondary">07:00 - 21:00</h2> -->
+      </div>
+      <div class="grid w-full max-w-screen-2xl" id="offer-products-container">
+        <!-- <div class="text-xl font-bold text-primary">Unfortunately, there are no products available for this event.</div> -->
+        <!-- <div class="overflow-hidden py-025 px-05">
+          <div class="flex fade-in-section transition-all duration-1000 ease-out">
+              <div class="grid grid-cols-2 gap-1 w-full">
+                <div class="card-container transition-all duration-1000 ease-out">
+                  <a class="card transition-all duration-200 ease-in-out px-1 py-05 border-solid cursor-pointer">
+                    <h1 class="font-semibold">dimitris</h1>
+                    <div class="flex flex-wrap gap-025">
+                            <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
+                              dimitris
+                            </div>
+                            <div class="py-025 px-05 text-xs bg-primary text-primaryContent info-tile">
+                              dimitris
+                            </div>
+                    </div>
+                    <div class="flex w-full h-full justify-between">
+                        <div class="flex flex-col w-full pr-1 gap-05">
+                            <p class="text-sm">dimitris</p>
+                        </div>
+                        <div class="margin-top-05 self-center">
+                            <img class="product-image" src="images/xarouposokolatompoukies.jpg" width="400" height="200">
+                        </div>
+                    </div>
+                    <div class="flex justify-between pt-05">
+                        <div class="flex flex-col items-start">
+                            <div class="margin-top-auto text-lg font-semibold text-primary inline-flex gap-05">
+                                14
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                          <div class="w-fit">
+                            <div class="flex gap-025 flex-wrap">
+                              <div class="w-fit h-fit py-025 px-05 text-xs truncate rounded-lg bg-secondary text-secondaryContent">
+                                147kcal
+                              </div>
+                              <div class="w-fit h-fit py-025 px-05 text-xs truncate rounded-lg bg-secondary text-secondaryContent">
+                                147kcal
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="btn p-05 w-fit h-fit py-05 px-150 bg-primary text-primaryContent" type="button" id="return-modal-offer-button">
+        <div>Explore our entire menu</div>
+      </div>
+    </aside>
+  </div>
+  <!-- OFFER MODAL END -->
 
 </html>
