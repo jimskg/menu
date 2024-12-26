@@ -258,13 +258,17 @@
     function showMainPage(){
       const container = document.getElementById('container');
       container.classList.remove('display-none');
+      const footer = document.getElementById('footer');
+      footer.classList.remove('display-none');
     }
 
     function handleDownForMaintentance(){
       const container = document.getElementById('container');
       const containerMaintenance = document.getElementById('container-maintenance');
+      const footer = document.getElementById('footer');
       container.classList.add('display-none');
       containerMaintenance.classList.remove('display-none');
+      footer.classList.remove('display-none');
       closeLoadingSpinner()
     }
 
