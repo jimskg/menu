@@ -359,7 +359,7 @@
             <div class="flex w-full h-full justify-between">
                 <div class="flex flex-col w-full pr-1 gap-05">
                     <p class="text-sm max-sm:text-xs line-clamp-2">${translatedOfferProductFirstText || ''}</p>
-                    <div class="line-clamp-3">
+                    <div class="line-clamp-3 text-secondary ">
                       <p class="text-secondary text-sm max-sm:text-xs"> ${translatedOfferProductSecondText || ''}</p>
                     </div>
                 </div>
@@ -495,7 +495,7 @@
                   <div class="flex w-full h-full justify-between">
                       <div class="flex flex-col w-full pr-1 gap-05">
                           <p class="text-sm max-sm:text-xs line-clamp-2">${translatedProductFirstText || ''}</p>
-                          <div class="line-clamp-3">
+                          <div class="line-clamp-3 text-secondary ">
                             <p class="text-secondary text-sm max-sm:text-xs "> ${translatedProductSecondText || ''}</p>
                           </div>
                       </div>
@@ -570,7 +570,7 @@
             </div> `
             : ''
         }
-        <div class="p-150">
+        <div class="p-150 space-y-4">
           <h1 class="word-break font-bold text-3xl">${translatedProductTitle || ''}</h1>
           <div class="flex flex-wrap items-center gap-05 margin-top-1">
             <div class="flex flex-wrap gap-025">
@@ -581,7 +581,7 @@
             </div>
           </div>
           <p>${translatedProductFirstText || ''}</p>
-          <div class="line-clamp-3">
+          <div class="line-clamp-3 text-secondary ">
             <p class="text-secondary text-sm"> ${translatedProductSecondText || ''}</p>
           </div>
           <div></div>
