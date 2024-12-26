@@ -88,7 +88,7 @@ ul {
   padding: 0;
 }
 
-p {margin-top: .25rem; margin-bottom: .25rem;}
+p {margin-top: .25rem; margin-bottom: .25rem; }
 
 h1,h2,h3,h4,h5,h6 {
   font-size:inherit;
@@ -154,6 +154,12 @@ h1,h2,h3,h4,h5,h6 {
 .gap-05 {gap: .5rem;}
 .gap-1 {gap: 1rem;}
 
+.space-y-4>:not([hidden])~:not([hidden]) {
+  --tw-space-y-reverse:0;
+  margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom:calc(1rem * var(--tw-space-y-reverse))
+}
+
 .bg-primary {background-color: rgb(142 201 199/var(--tw-bg-opacity,1));}
 .bg-secondary {background-color: rgb(223 193 113/var(--tw-bg-opacity,1));}
 .bg-white {background-color: rgb(255 255 255/var(--tw-bg-opacity,1));}
@@ -195,12 +201,12 @@ h1,h2,h3,h4,h5,h6 {
 .text-secondary {color: rgb(223 193 113/var(--tw-text-opacity,1));}
 
 .line-clamp-2, .line-clamp-3, .line-clamp-4 {
-  display: -webkit-box;                /* Enable WebKit box model */
-  -webkit-box-orient: vertical;        /* Set vertical stacking */
-  overflow: hidden;                    /* Hide overflowing content */
-  text-overflow: ellipsis;             /* Add ellipsis at overflow */
-  white-space: normal;                 /* Allow text wrapping */
-  word-break: break-word;              /* Handle long words properly */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .line-clamp-3 {-webkit-line-clamp: 3;}
@@ -309,7 +315,6 @@ h1,h2,h3,h4,h5,h6 {
   justify-content: center;
   gap: 16px;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
 .logo img {
