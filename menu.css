@@ -195,10 +195,12 @@ h1,h2,h3,h4,h5,h6 {
 .text-secondary {color: rgb(223 193 113/var(--tw-text-opacity,1));}
 
 .line-clamp-2, .line-clamp-3, .line-clamp-4 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;   
+  display: -webkit-box;                /* Enable WebKit box model */
+  -webkit-box-orient: vertical;        /* Set vertical stacking */
+  overflow: hidden;                    /* Hide overflowing content */
+  text-overflow: ellipsis;             /* Add ellipsis at overflow */
+  white-space: normal;                 /* Allow text wrapping */
+  word-break: break-word;              /* Handle long words properly */
 }
 
 .line-clamp-3 {-webkit-line-clamp: 3;}
