@@ -198,6 +198,7 @@ h1,h2,h3,h4,h5,h6 {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  text-overflow: ellipsis;   
 }
 
 .line-clamp-3 {-webkit-line-clamp: 3;}
@@ -647,7 +648,7 @@ h1,h2,h3,h4,h5,h6 {
 .border-t {border-top-width: 1px;}
 .border-primary {border-color: rgb(142 201 199/var(--tw-border-opacity,1));}
 
-@media not all and (min-width: 380px) {
+@media not all and (min-width: 640px) {
   .max-sm\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
