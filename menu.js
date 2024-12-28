@@ -3,6 +3,7 @@
 
     let currentLanguage = 'gr';
     let breakIfDownForMaintenance = false;
+    let testEnvironment = window.location.href.includes('menu/index.html');
     let outputData = {};
     const apiKey = 'AIzaSyDjpCgr7OFoJXLBGN9Xzl8ktYbYkdt1TxA'; // Your API key from Google Developer Console
     //https://console.cloud.google.com/apis/credentials/key/1b4518f7-f092-4186-9ee3-ba4d1ec035aa?inv=1&invt=Abk6GA&project=menu-nutri-spot //jimskgg@gmail.com 
@@ -47,7 +48,7 @@
           if (sheetName === "Maintenance") {
             rows.forEach(row => {
               const [value] = row; // Map columns based on the sheet structure
-                if (value == 'TRUE'){
+                if (value == 'TRUE' && !testEnvironment){
                   handleDownForMaintentance();
                   breakIfDownForMaintenance = true;
                 }
