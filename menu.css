@@ -558,6 +558,11 @@ h1,h2,h3,h4,h5,h6 {
   opacity: 0.9;
 }
 
+.offer-button-main-page:hover{
+  background-color: rgb(142 201 199/var(--tw-bg-opacity,1));
+  color: rgb(255 255 255/var(--tw-text-opacity,1));
+}
+
 .a-tag-category:hover {
   background-color: rgb(142 201 199/var(--tw-bg-opacity,1));
   color: rgb(255 255 255/var(--tw-text-opacity,1));
