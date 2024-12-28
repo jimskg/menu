@@ -465,7 +465,7 @@
       
       if (!atLeastOneOffProductExist){
         offerProductsContainer.innerHTML = `
-          <div class="flex justify-center text-xl font-bold text-primary">Unfortunately, there are no products available for this event.</div>
+          <div class="flex justify-center text-xl font-bold text-primary text-align-center">Unfortunately, there are no products available for this event.</div>
         `;
       } else {
         offerDivSecond.appendChild(offerDivThird);
